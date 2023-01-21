@@ -1,28 +1,28 @@
-import Link from 'next/link';
-import { BsSearch, BsBell } from 'react-icons/bs';
-import { useState, useEffect } from 'react'
+import Link from "next/link";
+import { BsSearch, BsBell } from "react-icons/bs";
+import { useState, useEffect } from "react";
+import useAuth from "../hooks/useAuth";
 
 function Header() {
-  
-  const [isScrolled, setIsScrolled] = useState(false)
-  
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { logout } = useAuth();
+
   useEffect(() => {
     const handleScroll = () => {
-      if(window.scrollY > 0) {
-        setIsScrolled(true)
-      } else setIsScrolled(false)
-    }
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else setIsScrolled(false);
+    };
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <header className={`${isScrolled && "bg-[#141414]" }`}>
+    <header className={`${isScrolled && "bg-[#141414]"}`}>
       <div className="flex  items-center space-x-2 md:space-x-10">
         <img
           src="https://rb.gy/ulxxee"
@@ -31,25 +31,26 @@ function Header() {
           className="cursor-pointer object-contain"
         />
         <ul className="hidden space-x-4 md:flex">
-            <li className="headerLink">Home</li>
-            <li className="headerLink">TV Show</li>
-            <li className="headerLink">Movies</li>
-            <li className="headerLink">New & Popular</li>
-            <li className="headerLink">My list</li>
+          <li className="headerLink">Home</li>
+          <li className="headerLink">TV Show</li>
+          <li className="headerLink">Movies</li>
+          <li className="headerLink">New & Popular</li>
+          <li className="headerLink">My list</li>
         </ul>
       </div>
 
-      <div className='flex items-center space-x-4 text-sm font-light'>
-        <BsSearch className='hidden sm:inline' />
-        <p className='hidden lg:inline'>Kids</p>
+      <div className="flex items-center space-x-4 text-sm font-light">
+        <BsSearch className="hidden sm:inline" />
+        <p className="hidden lg:inline">Kids</p>
         <BsBell />
-        <Link href='/account'>
-        <img
+        {/* <Link href="/account"> */}
+          <img
+            onClick={logout}
             src="https://rb.gy/g1pwyx"
             alt=""
             className="cursor-pointer rounded"
           />
-        </Link>
+        {/* </Link> */}
       </div>
     </header>
   );
