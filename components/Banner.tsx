@@ -44,17 +44,17 @@ function Banner({ netflixOriginals }: Props) {
       </p>
 
       <div className="flex space-x-3">
-        <button className="bannerButton bg-white text-black">
-          <BsFillPlayFill className="text-black md:h-7 md:w-7" />
-          Play
-        </button>
         <button
-          className="bannerButton bg-[gray]/70"
+          className="bannerButton bg-white text-black"
           onClick={() => {
             setCurrentMovie(movie);
             setShowModal(true);
           }}
         >
+          <BsFillPlayFill className="text-black md:h-7 md:w-7" />
+          Play
+        </button>
+        <button className="bannerButton bg-[gray]/70">
           More Info <HiInformationCircle className="md:h-8 md:w-8" />
         </button>
       </div>
